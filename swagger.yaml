@@ -1,0 +1,105 @@
+# Example YAML to get you started quickly.
+# Be aware that YAML has indentation based scoping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "0.0.1"
+  title: Repository Management Layer
+  description: Automated Macro-level repo management.
+  contact:
+    name: Brandon Tomlinson
+    email: brandon.tomlinson@rackspace.com
+
+paths:
+  /reposet:
+    get:
+      summary: Fetch a list of reposets
+      description: By default, grabs all reposets up to some number
+      parameters:
+        -
+          type: number
+          name: size
+          in: query
+          required: false
+          description: the maximum number of objects to return
+      responses:
+        200:
+          description: OK
+    post:
+      summary: Create a new reposet
+      description: create a new object
+      responses:
+        201:
+          description: Created
+    put:
+      summary: Update a reposet
+      description: Updates the info of a reposet
+      responses:
+        200:
+          description: OK
+  /reposet/{reposetid}:
+    get:
+      summary: Get a specific reposet
+      description: Returns the reposet object using the unique id
+      responses:
+        200:
+          description: OK
+    put:
+      summary: Update a reposet
+      description: Update a reposet object
+      responses:
+        200:
+          description: OK
+    delete:
+      summary: Removes a reposet
+      description: removes the attached repos form backend and deletes the set in the db
+      responses:
+        200:
+          description: OK
+    parameters:
+      - name: reposetid
+        in: path
+        required: true
+        description: description
+        type: string
+  /package:
+    get:
+      summary: Fetch a package list
+      description: Returns a list of packages
+      responses:
+        200:
+          description: OK
+    post:
+      summary: Create a new package
+      description: Creates a new package object
+      responses:
+        201:
+          description: Created
+  /package/{packageid}:
+    parameters:
+      - name: packageid
+        in: path
+        required: true
+        description: description
+        type: string
+    get:
+      summary: Get a package
+      description: fetch a specific package by id
+      responses:
+        200:
+          description: OK
+    put:
+      summary: Update a package
+      description: update a package object
+      responses:
+        200:
+          description: OK
+    delete:
+      summary: Delete a package
+      description: Delete a package object
+      responses:
+        200:
+          description: OK
+    
